@@ -1,0 +1,2 @@
+# Optional, Windows only: virtual Xbox 360 pad. The ViGEmBus driver is installed from TxBridge's Setup page.
+vgamepad>=0.1.0

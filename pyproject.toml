@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "txbridge"
+dynamic = ["version"]
+description = "Connect FlySky FS-CT6A/B class transmitters to PC flight simulators over the USB trainer cable."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = [
+    "PySide6-Essentials>=6.6",
+    "pyserial>=3.5",
+    "psutil>=5.9",
+    "openpyxl>=3.1",
+]
+
+[project.optional-dependencies]
+xbox = ["vgamepad>=0.1.0; sys_platform == 'win32'"]
+uinput = ["evdev>=1.6; sys_platform == 'linux'"]
+dev = ["pytest>=8", "pyinstaller>=6.6", "pillow>=10"]
+
+[project.gui-scripts]
+txbridge = "txbridge.__main__:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "txbridge.__version__" }
+
+[tool.setuptools.packages.find]
+include = ["txbridge*"]
+
+[tool.setuptools.package-data]
+txbridge = ["assets/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
