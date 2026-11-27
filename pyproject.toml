@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "txbridge"
 dynamic = ["version"]
-description = "Connect FlySky FS-CT6A/B class transmitters to PC flight simulators over the USB trainer cable."
+description = "RC transmitter companion for desktop flight simulators and model setup."
 readme = "README.md"
 license = { text = "MIT" }
 requires-python = ">=3.10"

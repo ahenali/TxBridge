@@ -4,7 +4,7 @@ Bug reports and hardware reports are the most useful thing you can send. Code is
 
 ## Reports from real radios
 
-The protocol was recovered from a demo program, not from documentation, and TxBridge has so far only been run against a simulated radio. If you have an FS-CT6A/B (or a rebadge), the [hardware report](.github/ISSUE_TEMPLATE/hardware_report.md) template tells you what to check. `docs/PROTOCOL.md` lists which parts are verified and which are guesses. Confirming or correcting the guesses helps more than anything else.
+The FS-CT6A/B protocol is reverse-engineered; a read-only smoke test has succeeded on one real FS-CT6B. Radio-setting writes and calibration have not been tested on hardware. If you have another FS-CT6A/B model or rebadge, the [hardware report](.github/ISSUE_TEMPLATE/hardware_report.md) template explains what to check. `docs/PROTOCOL.md` distinguishes verified behavior from inferred details. Other transmitter families need separate protocol work and hardware validation.
 
 When something misbehaves, open Tools > Diagnostics, reproduce it, and attach the log.
 

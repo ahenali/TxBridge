@@ -2,9 +2,8 @@ import random
 import pytest
 from txbridge import protocol as P
 
-# Register map recovered from the original binary (DataRow column names joined
-# to the byte offsets used by its parser).  Deliberately written out longhand and
-# separately from protocol.py so a mistake in either shows up as a failure.
+# Independent register map for the documented wire format. Deliberately written
+# out longhand and separately from protocol.py so mistakes show up as failures.
 # name -> (frame byte, 'u'|'s'|'hi'|'lo'|'bitN')
 RE_MAP = {
     "stick": (2, "hi"), "tipo": (2, "lo"),

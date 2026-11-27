@@ -52,7 +52,7 @@ class SettingsDialog(QDialog):
         row = QHBoxLayout()
         row.addWidget(button("Open folder", slot=lambda: QDesktopServices.openUrl(QUrl.fromLocalFile(data_dir()))))
         row.addWidget(button("Make portable", slot=self._portable)); row.addStretch(); v.addLayout(row)
-        v.addWidget(label(f"{APP_NAME} {__version__}. For FS-CT6A/B class radios on their USB trainer cable.", "hint"))
+        v.addWidget(label(f"{APP_NAME} {__version__}. FS-CT6A/B support; more radios planned.", "hint"))
         bb = QHBoxLayout(); bb.addStretch(); bb.addWidget(button("Close", primary=True, slot=self.accept)); v.addLayout(bb)
 
     def _portable(self) -> None:

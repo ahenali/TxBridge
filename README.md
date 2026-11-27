@@ -5,9 +5,11 @@
   <img alt="TxBridge live view with six channel bars, two stick boxes and a ten second trace" src="docs/screenshots/live-light.png">
 </picture>
 
-TxBridge connects a FlySky FS-CT6A/B class transmitter to a flight simulator on Windows. Plug the radio into the PC with its USB trainer cable and the sticks show up in the simulator as a game controller. It also reads and edits the settings stored inside the radio, which is what the manufacturer's Digital Radio program was for.
+TxBridge is an RC transmitter companion for desktop flight simulators. It currently connects FlySky FS-CT6A/B class transmitters over a USB trainer cable, monitors live channels, edits radio settings, and maps the sticks to a virtual game controller.
 
-It works with the FS-CT6A and CT6B and their rebadges (HK-T6A, Turborix, Exceed, Storm ST-06TX and similar).
+It targets the FS-CT6A/B family and rebadges such as HK-T6A, Turborix, Exceed and Storm ST-06TX. A read-only hardware test has confirmed one FS-CT6B; other models still need field reports.
+
+Other planned target families include FlySky FS-i6/i6X, FrSky Taranis/OpenTX, RadioMaster EdgeTX and Spektrum. Those radios are **not supported yet**: each model needs its own protocol or input integration and hardware validation before it can be listed as supported.
 
 ## Status
 
@@ -15,9 +17,22 @@ The app and protocol test suite include a software radio. A read-only smoke test
 
 ## Install
 
-Download `TxBridge-Setup-x.y.z.exe` from the [releases page](../../releases) and run it. There is also a portable zip: unpack it anywhere and TxBridge keeps its settings in a `data` folder next to the program.
+Download the latest installers from the [GitHub Releases page](https://github.com/ahenali/TxBridge/releases/latest).
+
+### Windows
+
+Download `TxBridge-Setup-x.y.z.exe` and run it. The installer adds TxBridge to the Start menu; it can also create a desktop shortcut. A portable zip is available too: unpack it anywhere and TxBridge keeps settings in a `data` folder next to the program.
 
 Windows may show a SmartScreen warning because the installer is not code-signed yet. The release includes `SHA256SUMS.txt` if you want to check your download.
+
+### Linux
+
+Releases include an x86-64 **AppImage** and a **Debian/Ubuntu `.deb`** package:
+
+- For the AppImage, download it, make it executable (`chmod +x TxBridge-*.AppImage`), then run it. AppImages require FUSE support; if your desktop does not provide it, use the `.deb`.
+- On Debian/Ubuntu 64-bit (Ubuntu 22.04+ or Debian 12+), open the `.deb` with the software installer, or run `sudo apt install ./txbridge_<version>_amd64.deb`. The package adds a TxBridge application-menu entry and installs its required system libraries.
+
+For serial radio cables on Linux, your user needs serial-device access. If needed, run `sudo usermod -aG dialout "$USER"` and sign out and back in. The optional uinput simulator backend also needs write access to `/dev/uinput`.
 
 ### Drivers
 
@@ -69,11 +84,11 @@ To build the Windows program, installer and portable zip:
 build_windows.bat
 ```
 
-That script needs [Inno Setup 6](https://jrsoftware.org/isdl.php) for the installer; without it you still get the program folder and the zip. Pushing a tag like `v1.1.0` makes GitHub Actions do the same and attach the files to a release. Run the tests with `pytest`.
+That script needs [Inno Setup 6](https://jrsoftware.org/isdl.php) for the installer; without it you still get the program folder and the zip. On Linux, build the AppImage and Debian package with `bash packaging/build_linux.sh <version>` after building `dist/TxBridge` with PyInstaller. Pushing a version tag makes GitHub Actions build the Windows and Linux packages and attach them to a release. Run the tests with `pytest`.
 
 ## How it was made
 
-The serial protocol was worked out by analysing how the Digital Radio demo exchanges data with the transmitter: frame format, checksums, the settings layout and value ranges. No code, artwork or licence logic from that program is used. See [NOTICE](NOTICE) and `docs/PROTOCOL.md`.
+The FS-CT6A/B protocol is independently implemented from reverse-engineered packet behavior and checked against a real CT-6B. TxBridge does not include another application's code, artwork or licensing logic. Protocol details that are inferred rather than hardware-verified are identified in [docs/PROTOCOL.md](docs/PROTOCOL.md).
 
 ## License
 

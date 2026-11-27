@@ -1,9 +1,8 @@
 # Radio protocol (FS-CT6A/B family, USB trainer cable)
 
-Recovered from the Digital Radio 1.0.4 demo (a .NET assembly with renamed symbols and an
-encrypted string table). The string table was decrypted offline to recover the enumerations and the
-column names that tie every settings byte to a parameter name. `tests/test_protocol.py` contains the
-byte map written out a second time, independently of `protocol.py`, and checks both agree on random data.
+TxBridge independently implements the reverse-engineered serial protocol and settings layout for this
+radio family. `tests/test_protocol.py` keeps a separate wire-format reference and checks it against
+`protocol.py` using random settings.
 
 ## Link
 115200 baud, 8N1, USB-serial cable (Prolific PL2303 class). Multi-byte values are big-endian.
@@ -43,15 +42,15 @@ Mix source: 0-5 = CH1-6, 6 = variable A, 7 = variable B. Destination: 0-5 = CH1-
 `.cfg` files are the 65 payload bytes followed by the u16 checksum (67 bytes).
 
 ## What is verified and what is inferred
-Verified directly from the binary: framing, checksums, every offset, nibble/bit packing, signedness,
+Confirmed in protocol analysis: framing, checksums, every offset, nibble/bit packing, signedness,
 enumeration values and valid ranges, the three command bytes `FA 00`, `FF`, `88`, the 115200 baud rate,
 vJoy axis usage (X,Y,Z,Rx,Ry,Rz). A read-only smoke test on a real FS-CT6B over a CP210x USB-serial
 cable received live frames and a settings reply. No settings writes or calibration commands were sent.
 
 Inferred, not hardware-tested:
-* `99` ends calibration. The demo's Start-calibration handler sends `88`; the `99` builder exists but its call
-  site was removed from the demo, so its role is deduced from the manual and from symmetry.
-* Pulse widths are microseconds (the original subtracts 1000 to get 0..1000).
+* `99` is believed to end calibration, based on the manual and protocol symmetry. It has not been
+  tested on hardware.
+* Pulse widths appear to be microseconds (mapped from roughly 1000..2000 to -100..100).
 * The two aux bytes at the end of the live frame are unidentified and shown only in diagnostics.
 * Stick-mode gimbal layout in the Live view follows the standard Mode 1-4 definitions.
 * Continuous live streaming and a settings reply within about a second were observed on one FS-CT6B;

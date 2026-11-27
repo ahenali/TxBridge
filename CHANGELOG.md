@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0
+
+- GitHub Releases now build a Windows installer and portable zip, plus Linux AppImage and Debian/Ubuntu packages.
+- Release checksums cover all platform installers.
+- Documented the current FS-CT6A/B support boundary and the next radio families under consideration.
+
 ## 1.1.0
 
 - New look: flat layout, neutral colours with a single blue accent, light and dark themes, and a "follow Windows" setting (now the default).

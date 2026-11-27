@@ -24,8 +24,8 @@ def friendly_open_error(exc: Exception, port: str) -> str:
     text = str(exc)
     low = text.lower()
     if "access is denied" in low or "permission" in low or "busy" in low or "could not exclusively lock" in low:
-        return (f"{port} is in use by another program. Close t6config, Digital Radio or any other "
-                f"tool that talks to the radio, then try again.")
+        return (f"{port} is in use by another program. Close any other radio configuration tool "
+                "that talks to the radio, then try again.")
     if "could not open" in low or "no such file" in low or "cannot find" in low or "filenotfound" in low:
         return f"{port} is no longer available. Check the USB cable and pick the port again."
     return f"Could not open {port}: {text}"

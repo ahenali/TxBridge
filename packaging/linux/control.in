@@ -1,0 +1,9 @@
+Package: txbridge
+Version: @VERSION@
+Section: electronics
+Priority: optional
+Architecture: amd64
+Depends: libc6 (>= 2.35), libdbus-1-3, libegl1, libfontconfig1, libgl1, libglib2.0-0, libx11-6, libx11-xcb1, libxcb-cursor0, libxcb1, libxkbcommon0, libxkbcommon-x11-0
+Maintainer: TxBridge contributors <ahenali@users.noreply.github.com>
+Description: RC transmitter companion for flight simulators
+ TxBridge connects supported RC transmitters to desktop flight simulators.

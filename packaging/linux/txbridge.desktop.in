@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=TxBridge
+Comment=RC transmitter companion for flight simulators
+Exec=@EXEC@ %F
+Icon=txbridge
+Terminal=false
+Categories=Utility;Electronics;
+StartupWMClass=TxBridge

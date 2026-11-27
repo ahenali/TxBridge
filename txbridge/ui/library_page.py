@@ -74,7 +74,7 @@ class LibraryPage(QWidget):
         # empty state
         empty = QWidget(); el = QVBoxLayout(empty); el.setContentsMargins(0, 60, 0, 0); el.setSpacing(6)
         t = heading("No models saved yet"); t.setAlignment(Qt.AlignmentFlag.AlignHCenter); el.addWidget(t)
-        d = label("Save what is in the editor now, or import .cfg files from t6config or Digital Radio.", "muted")
+        d = label("Save what is in the editor now, or import compatible 67-byte .cfg model files.", "muted")
         d.setAlignment(Qt.AlignmentFlag.AlignHCenter); d.setWordWrap(True); el.addWidget(d)
         el.addStretch()
         self.pages.addWidget(empty)

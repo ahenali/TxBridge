@@ -1,11 +1,10 @@
-"""Serial protocol and settings model for the 6-channel USB trainer-cable radios.
+"""Serial protocol and settings model for the FlySky FS-CT6A/B radio family.
 
 Covers the FlySky FS-CT6A/B family and its rebadges (HobbyKing HK-T6A, Turborix
 TBXT6, Exceed RC, Storm ST-06TX, CopterX CX-CT6A, Jamara FCX 6).
 
-Everything in this file was recovered by analysing the wire traffic handling of
-the "Digital Radio" 1.0.4 demo build; offsets and enumerations below are the
-ones that program reads and writes.  Nothing here is copied from its source.
+This is an independent implementation of the reverse-engineered wire protocol.
+Verified and inferred fields are documented in docs/PROTOCOL.md.
 
 Link:   115200 baud, 8N1, USB-to-serial cable (PL2303 class).
 

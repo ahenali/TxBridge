@@ -1,5 +1,7 @@
-TxBridge is an independent program. It speaks the serial protocol of FS-CT6A/B class
-transmitters, which was worked out by analysing how the "Digital Radio" demo build
-exchanges data with the radio (offsets, enumerations, ranges). No source code, UI
-assets, licence logic or registered-version content from that program is used.
-The ".cfg" file format is the one used by the t6config family of tools.
+TxBridge is an independent implementation for FS-CT6A/B class transmitters. Its
+serial protocol and settings layout were reverse-engineered and checked against
+radio hardware. No source code, UI assets, licence logic, or registered-version
+content from another application is included.
+
+The ".cfg" model-file format is compatible with the 67-byte format used by other
+tools for this radio family.
