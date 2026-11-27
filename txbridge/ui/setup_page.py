@@ -176,7 +176,8 @@ class SetupPage(QWidget):
         b = button("Driver pages")
         m = QMenu(b)
         for name, url, note in drivers.SERIAL_DRIVERS:
-            m.addAction(f"{name}" + (f"  \u00b7  {note}" if note else ""), lambda u=url: QDesktopServices.openUrl(QUrl(u)))
+            m.addAction(f"{name}" + (f"  \u00b7  {note}" if note else ""),
+                        lambda *_, u=url: QDesktopServices.openUrl(QUrl(u)))
         m.addSeparator()
         m.addAction("How to tell which chip I have", lambda: QDesktopServices.openUrl(QUrl(
             "https://learn.microsoft.com/windows-hardware/drivers/usbcon/usb-device-descriptors")))
@@ -205,13 +206,15 @@ class SetupPage(QWidget):
             acts = []
             if comp.key == "vjoy":
                 acts.append(button("Configure vJoy", slot=self._configure_vjoy))
-            acts.append(button("Reinstall", quiet=True, slot=lambda c=comp: self.install(c)))
+            acts.append(button("Reinstall", quiet=True, slot=lambda *_, c=comp: self.install(c)))
             row.set_actions(acts)
         else:
             row.set_state("text3" if comp.key == "vigem" else "bad", "Not installed." if not self._waiting.get(comp.key)
                           else "Waiting for the installer to finish\u2026")
-            row.set_actions([button(f"Install {comp.name}", primary=comp.key == "vjoy", slot=lambda c=comp: self.install(c)),
-                             button("Release page", quiet=True, slot=lambda c=comp: QDesktopServices.openUrl(QUrl(c.page)))])
+            row.set_actions([button(f"Install {comp.name}", primary=comp.key == "vjoy",
+                                    slot=lambda *_, c=comp: self.install(c)),
+                             button("Release page", quiet=True,
+                                    slot=lambda *_, c=comp: QDesktopServices.openUrl(QUrl(c.page)))])
 
     # ------------------------------------------------------------ actions
     def _configure_vjoy(self) -> None:

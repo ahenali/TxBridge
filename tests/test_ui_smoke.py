@@ -37,6 +37,23 @@ def test_every_page_builds_and_switches(env):
         assert win.stack.currentWidget() is win.pages[key]
 
 
+def test_vjoy_install_button_passes_the_component(env, monkeypatch):
+    from txbridge import drivers
+
+    win = env[2]
+    setup = win.pages["setup"]
+    setup._win = True
+    monkeypatch.setattr(drivers, "status_of", lambda comp: drivers.Status(detail=comp.key))
+    calls = []
+    monkeypatch.setattr(setup, "install", lambda comp: calls.append(comp))
+
+    setup._refresh_component(drivers.VJOY)
+    install = setup.rows["vjoy"].actions.itemAt(0).widget()
+    install.click()
+
+    assert calls == [drivers.VJOY]
+
+
 def test_editing_a_field_marks_it_and_send_writes_to_radio(env):
     app, ctl, win = env
     ctl.connect_demo(); assert pump(app, lambda: ctl.baseline is not None)

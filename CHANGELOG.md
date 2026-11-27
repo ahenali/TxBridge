@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.1
+
+- Fixed Setup page buttons passing Qt's click-state instead of their selected driver, so Install vJoy now starts correctly.
+
 ## 1.2.0
 
 - GitHub Releases now build a Windows installer and portable zip, plus Linux AppImage and Debian/Ubuntu packages.
